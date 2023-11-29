@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:simple_video_player_app/resource/app_colors/app_colors.dart';
 import 'package:simple_video_player_app/routes/routes.dart';
 
 import 'routes/routes_name.dart';
@@ -21,6 +22,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        scaffoldBackgroundColor: AppColor.bgColor
+      ),
       initialRoute: RoutesName.homeView,
       getPages: AppRoutes.appRoutes(),
     );
