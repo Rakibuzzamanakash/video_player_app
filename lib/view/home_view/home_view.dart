@@ -60,7 +60,13 @@ class HomeView extends StatelessWidget {
                                   videoModelView.videos.value.results!.length) {
                                 return InkWell(
                                   onTap: (){
-                                    Get.toNamed(RoutesName.videoplayView);
+                                    Get.toNamed(
+                                        RoutesName.videoplayView,
+                                        arguments: {
+                                          "videoLink": value.manifest.toString(),
+                                          "index": index,
+                                        }
+                                    );
                                   },
                                   child: TrendingVideoCard(
                                       title: videoModelView.decodeText(value.title.toString()),
