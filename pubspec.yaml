@@ -38,6 +38,8 @@ dependencies:
   get: ^4.6.6
   http: ^1.1.2
   get_storage: ^2.1.1
+  intl: ^0.18.1
+  lecle_yoyo_player: ^0.0.8
 
 dev_dependencies:
   flutter_test:

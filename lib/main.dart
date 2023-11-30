@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: AppColor.bgColor
       ),
-      initialRoute: RoutesName.videoplayView,
+      initialRoute: RoutesName.homeView,
       getPages: AppRoutes.appRoutes(),
     );
   }
