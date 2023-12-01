@@ -11,7 +11,7 @@ class VideoModelView extends GetxController{
 
   final _api = VideoRepository();
 
-  final rxRequestStatus = Status.LOADING.obs;
+  final rxRequestStatus = Status.loading.obs;
   final ScrollController scrollController = ScrollController();
   final videoList = VideoModel().obs;
   final videos = VideoModel().obs;
@@ -61,9 +61,9 @@ String convertedDate(String date){
 
     try {
       isLoading = true;
-        setRxRequestStatus(Status.LOADING);
+        setRxRequestStatus(Status.loading);
        _api.videoListApi(currentPage).then((value){
-         setRxRequestStatus(Status.COMPLETED);
+         setRxRequestStatus(Status.completed);
          setVideoList(value);
          if (videoList.value.results!.isEmpty) {
            hasMoreData = false;
@@ -74,7 +74,7 @@ String convertedDate(String date){
            currentPage++;
          }
        }).onError((error, stackTrace) {
-         setRxRequestStatus(Status.ERROR);
+         setRxRequestStatus(Status.error);
        });
 
     } finally {

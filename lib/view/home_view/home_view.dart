@@ -31,15 +31,15 @@ class HomeView extends StatelessWidget {
                 ),
                 Obx(() {
                   switch (videoModelView.rxRequestStatus.value) {
-                    case Status.LOADING:
+                    case Status.loading:
                       return const Center(
                         child: CircularProgressIndicator(),
                       );
-                    case Status.ERROR:
+                    case Status.error:
                       return const Center(
                         child: CircularProgressIndicator(),
                       );
-                    case Status.COMPLETED:
+                    case Status.completed:
                       if (videoModelView.videos.value.results!.isEmpty &&
                           videoModelView.isLoading) {
                         return const Center(child: CircularProgressIndicator());

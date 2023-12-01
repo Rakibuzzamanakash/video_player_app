@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lecle_yoyo_player/lecle_yoyo_player.dart';
-
 import '../../resource/app_assets/app_assets.dart';
 import '../../resource/app_colors/app_colors.dart';
 import '../../resource/app_strings/app_string.dart';
