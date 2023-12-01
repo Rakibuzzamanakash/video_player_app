@@ -27,7 +27,7 @@ class TrendingVideoCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Container(
         width: double.infinity,
-        height: AppDimension(context).height * .333,
+        height: AppDimension(context).height * .335,
         color: AppColor.appWhiteColor,
         child: Column(
           children: [

@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:simple_video_player_app/resource/app_colors/app_colors.dart';
