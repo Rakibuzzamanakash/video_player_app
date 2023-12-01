@@ -10,6 +10,10 @@ In the view section, I do my app UI.
 <img width="1421" alt="image" src="https://github.com/Rakibuzzamanakash/video_player_app/assets/77709959/2d67a6de-4d00-4dea-87a8-3f9f8cb6666f">
 
 
+This is my app UI. I designed two screens here first one is for showing trending video titles, thumbnail images, durations, views, and datetime of video upload. if anyone clicks on the thumbnail then it will take him to the video play page and it will start playing the video.
+<img width="336" alt="image" src="https://github.com/Rakibuzzamanakash/video_player_app/assets/77709959/181f97b5-b375-4743-8a12-aae37d7efed6">
+
+
 A few resources to get you started if this is your first Flutter project:
 
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
