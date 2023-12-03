@@ -29,56 +29,59 @@ class VideoPlayWidgets extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        YoYoPlayer(
-          aspectRatio: 16 / 9,
-          url: url,
-          videoStyle: const VideoStyle(
-            qualityStyle: TextStyle(
-              fontSize: 16.0,
-              fontWeight: FontWeight.w500,
-              color: Colors.white,
+        Container(
+          color: AppColor.appBlackColor,
+          child: YoYoPlayer(
+            aspectRatio: 16 / 9,
+            url: url,
+            videoStyle: const VideoStyle(
+              qualityStyle: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+              ),
+              forwardAndBackwardBtSize: 30.0,
+              playButtonIconSize: 40.0,
+              playIcon: Icon(
+                Icons.play_circle_outline_outlined,
+                size: 40.0,
+                color: Colors.white,
+              ),
+              pauseIcon: Icon(
+                Icons.pause_circle_outline_outlined,
+                size: 40.0,
+                color: Colors.white,
+              ),
+              //videoQualityPadding: EdgeInsets.all(5.0),
             ),
-            forwardAndBackwardBtSize: 30.0,
-            playButtonIconSize: 40.0,
-            playIcon: Icon(
-              Icons.play_circle_outline_outlined,
-              size: 40.0,
-              color: Colors.white,
-            ),
-            pauseIcon: Icon(
-              Icons.pause_circle_outline_outlined,
-              size: 40.0,
-              color: Colors.white,
-            ),
-            //videoQualityPadding: EdgeInsets.all(5.0),
-          ),
-          videoLoadingStyle: const VideoLoadingStyle(
-            loading: Center(
-              child: CircularProgressIndicator(
-                color: AppColor.appGrayColor,
+            videoLoadingStyle: const VideoLoadingStyle(
+              loading: Center(
+                child: CircularProgressIndicator(
+                  color: AppColor.appGrayColor,
+                ),
               ),
             ),
+            // allowCacheFile: true,
+            // onCacheFileCompleted: (files) {
+            //   print('Cached file length ::: ${files?.length}');
+            //
+            //   if (files != null && files.isNotEmpty) {
+            //     for (var file in files) {
+            //       print('File path ::: ${file.path}');
+            //     }
+            //   }
+            // },
+            // onCacheFileFailed: (error) {
+            //   print('Cache file error ::: $error');
+            // },
+            // onFullScreen: (value) {
+            //   // setState(() {
+            //   //   if (fullscreen != value) {
+            //   //     fullscreen = value;
+            //   //   }
+            //   // });
+            // }
           ),
-          // allowCacheFile: true,
-          // onCacheFileCompleted: (files) {
-          //   print('Cached file length ::: ${files?.length}');
-          //
-          //   if (files != null && files.isNotEmpty) {
-          //     for (var file in files) {
-          //       print('File path ::: ${file.path}');
-          //     }
-          //   }
-          // },
-          // onCacheFileFailed: (error) {
-          //   print('Cache file error ::: $error');
-          // },
-          // onFullScreen: (value) {
-          //   // setState(() {
-          //   //   if (fullscreen != value) {
-          //   //     fullscreen = value;
-          //   //   }
-          //   // });
-          // }
         ),
         Padding(
           padding: const EdgeInsets.all(10),
