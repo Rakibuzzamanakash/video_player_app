@@ -15,78 +15,73 @@ class HomeView extends StatelessWidget {
     final VideoModelView videoModelView = Get.put(VideoModelView());
     return SafeArea(
       child: Scaffold(
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const Text(
-                  AppString.trendingVideos,
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
-                  ),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const Text(
+                AppString.trendingVideos,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
                 ),
-                Obx(() {
-                  switch (videoModelView.rxRequestStatus.value) {
-                    case Status.loading:
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    case Status.error:
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    case Status.completed:
-                      if (videoModelView.videos.value.results!.isEmpty &&
-                          videoModelView.isLoading) {
-                        return const Center(child: CircularProgressIndicator());
-                      } else if (videoModelView.videos.value.results!.isEmpty &&
-                          !videoModelView.hasMoreData) {
-                        return const Center(child: Text('No data available.'));
-                      } else {
-                        return ListView.builder(
-                            itemCount:
-                                videoModelView.videos.value.results!.length,
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            controller: videoModelView.scrollController,
-                            itemBuilder: (context, index) {
-                              var value =
-                                  videoModelView.videos.value.results![index];
-                              if (index <
-                                  videoModelView.videos.value.results!.length) {
-                                return InkWell(
-                                  onTap: (){
-                                    Get.toNamed(
-                                        RoutesName.videoplayView,
-                                        arguments: {
-                                          "videoLink": value.manifest.toString(),
-                                          "index": index,
-                                        }
-                                    );
-                                  },
-                                  child: TrendingVideoCard(
-                                      title: videoModelView.decodeText(value.title.toString()),
-                                      duration: value.duration.toString(),
-                                      views: value.viewers.toString(),
-                                      time: videoModelView.convertedDate(value.dateAndTime.toString()),
-                                      cardImage: value.thumbnail.toString(),
-                                      profileImage: value.channelImage.toString()),
-                                );
-                              } else {
-                                // Loading indicator when reaching the end
-                                return const Center(
-                                    child: CircularProgressIndicator());
-                              }
-                            });
-                      }
-                  }
-                }),
-              ],
-            ),
+              ),
+              Obx(() {
+                switch (videoModelView.rxRequestStatus.value) {
+                  case Status.loading:
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  case Status.error:
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  case Status.completed:
+
+                    return Expanded(
+                      child: ListView.builder(
+                          itemCount:
+                          videoModelView.videos.value.results!.length,
+                          shrinkWrap: true,
+                          physics: const ScrollPhysics(),
+                          controller: videoModelView.scrollController,
+                          itemBuilder: (context, index) {
+                            var value =
+                            videoModelView.videos.value.results![index];
+                            if(videoModelView.videos.value.results!.isNotEmpty){
+                              return InkWell(
+                                onTap: (){
+                                  Get.toNamed(
+                                      RoutesName.videoplayView,
+                                      arguments: {
+                                        "videoLink": value.manifest.toString(),
+                                        "index": index,
+                                      }
+                                  );
+                                },
+                                child: TrendingVideoCard(
+                                    title: videoModelView.decodeText(value.title.toString()),
+                                    duration: value.duration.toString(),
+                                    views: value.viewers.toString(),
+                                    time: videoModelView.convertedDate(value.dateAndTime.toString()),
+                                    cardImage: value.thumbnail.toString(),
+                                    profileImage: value.channelImage.toString())
+                              );
+                            }else{
+                              const Center(
+                                child: Text("No data available"),
+                              );
+                            }
+                            return null;
+                          }),
+                    );
+                }
+              }),
+
+
+            ],
           ),
         ),
       ),

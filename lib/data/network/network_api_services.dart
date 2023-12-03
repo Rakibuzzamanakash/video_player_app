@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
@@ -14,9 +15,9 @@ class NetworkApiServices extends BaseApiServices {
 
   @override
   Future<dynamic> getApi(String url,{dynamic header}) async{
-    // if (kDebugMode) {
-    //   print(url);
-    // }
+    if (kDebugMode) {
+      print(url);
+    }
 
     dynamic responseJson ;
 

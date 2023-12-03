@@ -13,41 +13,48 @@ class VideoModelView extends GetxController{
 
   final rxRequestStatus = Status.loading.obs;
   final ScrollController scrollController = ScrollController();
-  final videoList = VideoModel().obs;
-  final videos = VideoModel().obs;
-
+   final videos = VideoModel().obs;
+  //final videos = <VideoModel>[].obs;
   RxString error = ''.obs;
 
 
   void setRxRequestStatus(Status value) => rxRequestStatus.value = value;
-  void setVideoList(VideoModel value) => videoList.value = value;
-  void setVideos(VideoModel value) => videos.value = value;
+  void setVideos(VideoModel value) => videos.value = value; // Append new videos to the existing list
   void setError(String value) => error.value = value;
 
 
   @override
   void onInit() {
 
+
+
     scrollController.addListener(() {
       if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
-        loadVideos();
+        if(videos.value.links!.next.toString() != "null"){
+          currentPage++;
+          loadVideos();
+        }
+      }else if(scrollController.position.pixels == scrollController.position.minScrollExtent){
+        if (currentPage > 1) {
+          currentPage--;
+          loadVideos();
+        }
       }
     });
-
 
     loadVideos();
     super.onInit();
   }
 
-String decodeText(String text){
-  return utf8.decode(text.codeUnits);
-}
+  String decodeText(String text){
+    return utf8.decode(text.codeUnits);
+  }
 
-String convertedDate(String date){
-  DateTime now = DateTime.parse(date);
-  String formattedDate = DateFormat("MMM d, yyy").format(now);
-  return formattedDate;
-}
+  String convertedDate(String date){
+    DateTime now = DateTime.parse(date);
+    String formattedDate = DateFormat("MMM d, yyy").format(now);
+    return formattedDate;
+  }
 
 
   int currentPage = 1;
@@ -55,30 +62,22 @@ String convertedDate(String date){
   bool hasMoreData = true;
 
   Future<void> loadVideos() async {
-    if (isLoading || !hasMoreData) {
-      return;
-    }
 
     try {
-      isLoading = true;
-        setRxRequestStatus(Status.loading);
-       _api.videoListApi(currentPage).then((value){
-         setRxRequestStatus(Status.completed);
-         setVideoList(value);
-         if (videoList.value.results!.isEmpty) {
-           hasMoreData = false;
-         } else {
-          // videos.value = videoList.value;
-           setVideos(videoList.value);
+      setRxRequestStatus(Status.loading);
+      _api.videoListApi(currentPage).then((value){
+        setRxRequestStatus(Status.completed);
+        setVideos(value);
+        // print("=======this is value =======");
+        // print(value.results!.length);
+        // print("=======this is value =======");
 
-           currentPage++;
-         }
-       }).onError((error, stackTrace) {
-         setRxRequestStatus(Status.error);
-       });
+      }).onError((error, stackTrace) {
+        setRxRequestStatus(Status.error);
+      });
 
-    } finally {
-      isLoading = false;
+    }catch(e){
+      setRxRequestStatus(Status.error);
     }
   }
 
