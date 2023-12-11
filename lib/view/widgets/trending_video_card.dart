@@ -24,7 +24,7 @@ class TrendingVideoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.only(bottom: 8.0),
       child: Container(
         width: double.infinity,
         height: AppDimension(context).height * .335,
