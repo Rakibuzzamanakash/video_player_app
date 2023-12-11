@@ -37,7 +37,7 @@ class NetworkApiServices extends BaseApiServices {
     // if (kDebugMode) {
     //   print(responseJson);
     // }
-
+    //log('===== data  start ====== \n\n${responseJson['links']}\n\n${responseJson['results']}\n\n ===== data  end ======');
     return responseJson ;
   }
 

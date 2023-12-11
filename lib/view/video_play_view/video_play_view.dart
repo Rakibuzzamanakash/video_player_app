@@ -11,7 +11,8 @@ class VideoPlayView extends StatelessWidget {
   Widget build(BuildContext context) {
     final VideoModelView videoModelView = Get.put(VideoModelView());
     final index = Get.arguments["index"];
-    var value = videoModelView.videos.value.results![index];
+   // var value = videoModelView.videos.value.results![index];
+    var value = videoModelView.videoList[index];
 
     return SafeArea(
       child: Scaffold(
